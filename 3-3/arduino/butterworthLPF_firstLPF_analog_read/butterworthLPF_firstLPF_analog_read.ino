@@ -13,6 +13,7 @@ float zn1 = 0; // = z[n-1]
 void setup() {
   Serial.begin(115200);
 }
+float tmp1=250, tmp2=250;
 
 void loop() {
   sensorValue = analogRead(sensorPin);
@@ -31,10 +32,18 @@ void loop() {
   yn1 = yn;  
   x2n1 = x2n;
   zn1 = zn;
+  if (yn > tmp1)
+    tmp1 = yn;
+  if (yn < tmp2)
+    tmp2 = yn;
   Serial.print(sensorValue);
   Serial.print(" ");  
   Serial.print(yn);
   Serial.print(" ");
-  Serial.println(zn);
+  Serial.print(zn);
+  Serial.print(" ");
+  Serial.print(tmp1);
+  Serial.print(" ");
+  Serial.println(tmp2);  
   delay(1); 
 }

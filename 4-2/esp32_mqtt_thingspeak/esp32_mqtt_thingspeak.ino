@@ -1,6 +1,7 @@
 #include <SimpleDHT.h> //引入SimpleDHT函式庫
 #include "ThingSpeak.h" //引入ThingSpeak函式庫
 #include <WiFi.h>  //引入Wi-Fi函式庫，讓ESP32能連接wifi
+#include <PubSubClient.h>
 
 #define BLINK_GPIO (gpio_num_t)12
 int pinDHT = 15;  //GPIO15腳位宣告
