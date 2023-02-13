@@ -30,9 +30,9 @@ void setup() {
 }
 
 void callback(char* topic, byte* message, unsigned int length) {
-  Serial.print("訂閱訊息到達，主題: ");
+  Serial.print("message arrived, topic: ");
   Serial.print(topic);
-  Serial.print(". 訊息內容: ");
+  Serial.print(". message: ");
   String messageTemp;
   
   for (int i = 0; i < length; i++) {
@@ -55,16 +55,16 @@ void callback(char* topic, byte* message, unsigned int length) {
 void reconnect() {  
   // Loop until we're reconnected
   while (!client.connected()) {
-    Serial.print("連接中…");
+    Serial.print("connecting…");
     // 重新連接MQTT伺服器
     if (client.connect("ESP32Client")) {
       Serial.println("connected");
       // 訂閱esp32/output主題
       client.subscribe("esp32/output");
     } else {
-      Serial.print("連接失敗, 狀態碼：");
+      Serial.print("connect failed, status code:");
       Serial.print(client.state());
-      Serial.println("5秒後重新連接");
+      Serial.println("connect again in 5 seconds...");
       // Wait 5 seconds before retrying
       delay(5000);
     }
